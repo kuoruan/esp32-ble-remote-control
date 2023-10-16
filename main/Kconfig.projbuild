@@ -1,0 +1,59 @@
+menu "App Configuration"
+
+    config APP_WIFI_SSID
+        depends on !EXAMPLE_WIFI_SSID_PWD_FROM_STDIN
+        string "WiFi SSID"
+        default "myssid"
+        help
+            SSID (network name) for the example to connect to.
+
+    config APP_WIFI_PASSWORD
+        depends on !EXAMPLE_WIFI_SSID_PWD_FROM_STDIN
+        string "WiFi Password"
+        default "mypassword"
+        help
+            WiFi password (WPA or WPA2) for the example to use.
+            Can be left blank if the network has no security set.
+
+    config APP_WIFI_MAXIMUM_RETRY
+        int "WiFi Maximum retry"
+        default 5
+        help
+            Set the Maximum retry to avoid station reconnecting to the AP unlimited when the AP is really inexistent.
+
+    config APP_BROKER_URI
+        string "Broker URL"
+        default "wss://mqtt.eclipseprojects.io:443/mqtt"
+        help
+            URL of an mqtt broker which this example connects to.
+
+    config APP_BROKER_CLIENT_ID
+        string "Broker client ID"
+        default "esp32"
+        help
+            Client ID for the broker connection.
+
+    config APP_BROKER_USERNAME
+        string "Broker username"
+        default ""
+        help
+            Username for the broker connection.
+
+    config APP_BROKER_PASSWORD
+        string "Broker password"
+        default ""
+        help
+            Password for the broker connection.
+
+    config APP_BROKER_CERTIFICATE_OVERRIDE
+        string "Server certificate override"
+        default ""
+        help
+            Please leave empty if server certificate included from a textfile; otherwise fill in a base64 part of PEM
+            format certificate
+
+    config APP_BROKER_CERTIFICATE_OVERRIDDEN
+        bool
+        default y if APP_BROKER_CERTIFICATE_OVERRIDE != ""
+
+endmenu
